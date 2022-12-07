@@ -856,9 +856,10 @@ module OP2_Fortran_Declarations
   end interface op_arg_idx
 
   interface op_decl_const
-    module procedure op_decl_const_integer_4, op_decl_const_real_8, op_decl_const_scalar_integer_4, &
+    module procedure op_decl_const_integer_4, op_decl_const_integer_8, op_decl_const_real_8, &
+            op_decl_const_scalar_integer_4, op_decl_const_scalar_integer_8, &
     & op_decl_const_scalar_real_8, op_decl_const_logical, &
-    & op_decl_const_integer_2_4, op_decl_const_real_2_8, op_decl_const_string
+    & op_decl_const_integer_2_4, op_decl_const_integer_2_8, op_decl_const_real_2_8, op_decl_const_string
   end interface op_decl_const
 
   interface op_arg_dat
@@ -1293,6 +1294,30 @@ contains
 
   end subroutine op_decl_const_integer_2_4
 
+  subroutine op_decl_const_integer_8 ( dat, constdim, opname )
+
+    integer(8), dimension(:), intent(in), target :: dat
+    integer(kind=c_int), value :: constdim
+    character(kind=c_char,len=*), optional :: opname
+
+    UNUSED(dat)
+    UNUSED(constdim)
+    UNUSED(opname)
+
+  end subroutine op_decl_const_integer_8
+
+  subroutine op_decl_const_integer_2_8 ( dat, constdim, opname )
+
+    integer(8), dimension(:,:), intent(in), target :: dat
+    integer(kind=c_int), value :: constdim
+    character(kind=c_char,len=*), optional :: opname
+
+    UNUSED(dat)
+    UNUSED(constdim)
+    UNUSED(opname)
+
+  end subroutine op_decl_const_integer_2_8
+
   subroutine op_decl_const_real_2_8 ( dat, constdim, opname )
 
     real(8), dimension(:,:), intent(in), target :: dat
@@ -1328,6 +1353,18 @@ contains
     UNUSED(opname)
 
   end subroutine op_decl_const_scalar_integer_4
+
+  subroutine op_decl_const_scalar_integer_8 ( dat, constdim, opname )
+
+    integer(8), intent(in), target :: dat
+    integer(kind=c_int), value :: constdim
+    character(kind=c_char,len=*), optional :: opname
+
+    UNUSED(dat)
+    UNUSED(constdim)
+    UNUSED(opname)
+
+  end subroutine op_decl_const_scalar_integer_8
 
   subroutine op_decl_const_scalar_real_8 ( dat, constdim, opname )
 
